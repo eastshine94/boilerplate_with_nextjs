@@ -1,5 +1,6 @@
 import React from 'react';
 import GlobalErrorBoundary from './GlobalErrorBoundary';
+import ReactQueryProvider from './ReactQueryProvider';
 
 interface GlobalContextWrapperProps {
   children: React.ReactNode;
@@ -8,5 +9,9 @@ interface GlobalContextWrapperProps {
 export default function GlobalContextWrapper({
   children,
 }: GlobalContextWrapperProps) {
-  return <GlobalErrorBoundary>{children}</GlobalErrorBoundary>;
+  return (
+    <GlobalErrorBoundary>
+      <ReactQueryProvider>{children}</ReactQueryProvider>
+    </GlobalErrorBoundary>
+  );
 }
