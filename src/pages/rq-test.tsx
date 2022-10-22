@@ -12,35 +12,40 @@ interface ProductItem {
 const Test: NextPage = () => {
   const fetchData = async () => {
     const res = await axios.get<ProductItem[]>(
-      'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline'
+      'http://makeup-api.herokuapp.com/api/v1/products.json',
+      {
+        params: {
+          brand: 'maybelline',
+        },
+      }
     );
     return res.data;
   };
 
-  const { data: list } = useQuery(['products'], () => fetchData());
-  if (!list) {
-    return <div>loading...</div>;
-  }
+  const queryKey = ['products'];
+  const queryFn = () => fetchData();
+  const { data: list, isLoading } = useQuery(queryKey, queryFn);
 
   return (
     <>
-      {!list ? (
-        <div>loading...</div>
-      ) : (
-        <div>
-          {/* <form onSubmit={handleProductSubmit}>
+      <div>
+        {/* <form onSubmit={handleProductSubmit}>
             <input type="text" value={text} onChange={handleTextChange} />
             <button type="submit">추가</button>
           </form> */}
-          {list.map((product) => (
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          list &&
+          list.map((product) => (
             <div key={product.id}>
               <div>id: {product.id}</div>
               <div>name: {product.name}</div>
               <div>price: {product.price}</div>
             </div>
-          ))}
-        </div>
-      )}
+          ))
+        )}
+      </div>
     </>
   );
 };
