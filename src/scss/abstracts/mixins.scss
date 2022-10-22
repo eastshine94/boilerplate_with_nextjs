@@ -1,0 +1,55 @@
+@mixin font($font-weight, $font-size-px, $line-height: 140%) {
+  font-family: 'Pretendard';
+  line-height: $line-height;
+
+  font-weight: $font-weight;
+  font-size: calcPxToRem($font-size-px);
+}
+
+@mixin page {
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: calcPxToRem(84) 0;
+  width: 100%;
+  max-width: calcPxToRem(1000);
+  min-height: 95vh;
+  background-color: $color-gray1;
+}
+
+@mixin reset-ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@mixin reset-button {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+}
+@mixin reset-anchor {
+  color: #000;
+  text-decoration: none;
+  outline: none;
+}
+
+@mixin reset-margin-padding {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin disabled {
+  cursor: auto;
+  color: $color-gray2;
+  pointer-events: none;
+}
