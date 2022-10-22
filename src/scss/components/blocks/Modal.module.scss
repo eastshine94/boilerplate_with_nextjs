@@ -1,0 +1,18 @@
+@import 'scss/common.scss';
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-black1-70;
+  z-index: 999;
+  overflow: auto;
+}
+.content {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
