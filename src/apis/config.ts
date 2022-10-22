@@ -1,17 +1,10 @@
-import axios from 'axios';
-import type { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
-import qs from 'qs';
+import axios, { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL || 'https://dev.api.com'; // 현재 임의
 const commonConfigs: AxiosRequestConfig = {
   baseURL,
   timeout: 10000, // ms, default 0 = no timeout
   transitional: { clarifyTimeoutError: true }, // ECONNABORTED -> ETIMEDOUT
-  paramsSerializer: {
-    encode: (params) => {
-      return qs.stringify(params);
-    },
-  },
   headers: {
     'Content-Type': 'application/json',
   },
